@@ -6,7 +6,7 @@ import java.lang.annotation.RetentionPolicy;
 import java.lang.annotation.Target;
 
 /**
- * 自定义注解@Service
+ * 自定义注解@Service，向容器注入bean
  * 基本思想：
  *      1. 使用Java反射机制扫描包，获取包下所有的类
  *      2. 判断类上是否有注入bean的注解
