@@ -7,9 +7,10 @@ import java.lang.annotation.Target;
 
 /**
  * @Author leeyaonan
- * @Date 2020/4/13 13:51
+ * @Date 2020/4/13 13:50
  */
-@Target({ElementType.METHOD})
+@Target({ElementType.FIELD})
 @Retention(RetentionPolicy.RUNTIME)
-public @interface Transactional {
+public @interface MyAutowired {
+
 }
