@@ -6,10 +6,8 @@ package com.leeyaonan.config;
  */
 
 import com.leeyaonan.aop.annotation.MyAutowired;
-import com.leeyaonan.aop.annotation.MyResource;
 import com.leeyaonan.aop.annotation.MyService;
 import com.leeyaonan.utils.ClassUtils;
-import org.springframework.util.StringUtils;
 
 import java.lang.reflect.Field;
 import java.util.ArrayList;

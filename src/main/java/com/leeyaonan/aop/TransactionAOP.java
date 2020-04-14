@@ -13,6 +13,7 @@ import org.springframework.aop.aspectj.MethodInvocationProceedingJoinPoint;
 import org.springframework.transaction.TransactionStatus;
 import org.springframework.transaction.interceptor.TransactionAspectSupport;
 
+import java.lang.annotation.Annotation;
 import java.lang.reflect.Method;
 
 /**
@@ -24,7 +25,7 @@ import java.lang.reflect.Method;
 public class TransactionAOP {
 
     @MyAutowired
-    TransactionUtils transactionUtils;
+    private TransactionUtils transactionUtils;
 
     private ProceedingJoinPoint proceedingJoinPoint;
 
@@ -33,48 +34,69 @@ public class TransactionAOP {
         transactionHandler();
     }
 
-    @Around(value = "execution(* cn.tuhu.springaop.service.impl.*.*(..))")
+    // 环绕通知，在方法之前和之后处理事情
+    @Around(value = "execution(* cn.tuhu.springaop.service.*.*.*(..))")
     public void transactionHandler(ProceedingJoinPoint proceedingJoinPoint) throws Throwable {
-        TransactionStatus transactionStatus = null;
+        TransactionStatus transactionStatus = transactionUtils.begin();
 
-        if (hasTransaction(proceedingJoinPoint)) {
-            transactionStatus = transactionUtils.begin();
-        }
-
+        // 调用目标代理对象方法
         proceedingJoinPoint.proceed();
 
-        // 若hasTransaction(proceedingJoinPoint)判断通过，则transactionStatus不为null
-        if (transactionStatus != null) {
+        this.commit(transactionStatus);
+    }
+
+    /**
+     * 判断事务的状态，提交事务
+     * @param transactionStatus
+     */
+    private void commit(TransactionStatus transactionStatus) {
+        if (null != transactionStatus) {
+            System.out.println("--提交事务--");
             transactionUtils.commit(transactionStatus);
         }
     }
 
     /**
-     * 判断切入点是否标注了@MyTransactional注解
-     *
+     * 判断是否有@MyTransactional注解，有的话开启事务
      * @param proceedingJoinPoint
-     * </a><a href="/profile/547241" data-card-uid="547241" class="js-nc-card" target="_blank">@return
+     * @return
      */
-    private boolean hasTransaction(ProceedingJoinPoint proceedingJoinPoint) throws NoSuchMethodException {
-        this.proceedingJoinPoint = proceedingJoinPoint;
-        //获取方法名
-        String methodName = proceedingJoinPoint.getSignature().getName();
-        //获取方法所在类的class对象
-        Class clazz = proceedingJoinPoint.getSignature().getDeclaringType();
-        //获取参数列表类型
-        Class[] parameterTypes = ((MethodSignature) proceedingJoinPoint.getSignature()).getParameterTypes();
-        //根据方法名和方法参列各参数类型可定位类中唯一方法
-        Method method = clazz.getMethod(methodName, parameterTypes);
-        //根据方法对象获取方法上的注解信息
-        MyTransactional myTransactional = method.getAnnotation(MyTransactional.class);
-        return myTransactional == null ? false : true;
+    private TransactionStatus begin(ProceedingJoinPoint proceedingJoinPoint) throws NoSuchMethodException {
+        // 1. 获取代理对象的方法
+        MyTransactional myTransactional = this.getMyTransactional(proceedingJoinPoint);
+        TransactionStatus transactionStatus = null;
+        if (null != myTransactional) {
+            // 开启事务
+            System.out.println("--开启事务--");
+            transactionStatus = transactionUtils.begin();
+        }
+
+        return transactionStatus;
     }
 
-    @AfterThrowing(value = "execution(* com.leeyaonan.service.impl.*.*(..))")
-    public void handleTransactionRollback() throws NoSuchMethodException {
-        if (hasTransaction(proceedingJoinPoint)) {
-            //获取当前事务并回滚
-            TransactionAspectSupport.currentTransactionStatus().setRollbackOnly();
-        }
+    /**
+     * 获取代理对象的方法，判断是否有@MyTransactional注解
+     * @param proceedingJoinPoint
+     * @return
+     */
+    private MyTransactional getMyTransactional(ProceedingJoinPoint proceedingJoinPoint) throws NoSuchMethodException {
+        // 获取方法的名称
+        String methodName = proceedingJoinPoint.getSignature().getName();
+        // 获取目标对象
+        Class<?> classTarget = proceedingJoinPoint.getTarget().getClass();
+        // 获取目标对象类型
+        Class<?>[] par = ((MethodSignature) proceedingJoinPoint.getSignature()).getParameterTypes();
+        // 获取目标对象方法
+        Method objMethod = classTarget.getMethod(methodName, par);
+        MyTransactional myTransactional = objMethod.getDeclaredAnnotation(MyTransactional.class);
+
+        return myTransactional;
+    }
+
+    // 异常通知
+    @AfterThrowing(value = "execution(* com.leeyaonan.service.*.*.*(..))")
+    public void handleTransactionRollback() {
+        System.out.println("--发生异常，回滚事务--");
+        transactionUtils.rollback();
     }
 }
