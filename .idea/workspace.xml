@@ -7,24 +7,13 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="982c4dff-fa0c-4f82-a163-cecf87dd151b" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/leeyaonan/config/MySpringConfig.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/leeyaonan/aop/TransactionAOP.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/leeyaonan/aop/aspect/TransactionAspect.java" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/src/main/java/com/leeyaonan/utils/TransactionUtils.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/jdbc.properties" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/test/java/TestIoC.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/leeyaonan/aop/annotation/MyAutowired.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/leeyaonan/aop/annotation/MyAutowired.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/leeyaonan/aop/annotation/MyResource.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/leeyaonan/aop/annotation/MyResource.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/leeyaonan/aop/annotation/MyService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/leeyaonan/aop/annotation/MyService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/leeyaonan/aop/annotation/MyTransactional.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/leeyaonan/aop/annotation/MyTransactional.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/leeyaonan/config/MyAnnotationConfigApplicationContext.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/leeyaonan/config/MyAnnotationConfigApplicationContext.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/leeyaonan/dao/impl/JdbcAccountDaoImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/leeyaonan/dao/impl/JdbcAccountDaoImpl.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/leeyaonan/factory/BeanFactory.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/leeyaonan/factory/BeanFactory.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/leeyaonan/factory/ProxyFactory.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/leeyaonan/factory/ProxyFactory.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/leeyaonan/service/impl/TransferServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/leeyaonan/service/impl/TransferServiceImpl.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/leeyaonan/servlet/TransferServlet.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/leeyaonan/servlet/TransferServlet.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/leeyaonan/utils/ClassUtils.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/leeyaonan/utils/ClassUtils.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/leeyaonan/utils/ConnectionUtils.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/leeyaonan/utils/ConnectionUtils.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/leeyaonan/utils/TransactionManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/leeyaonan/utils/TransactionManager.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/leeyaonan/config/MySpringConfig.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/leeyaonan/config/MySpringConfig.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/applicationContext.xml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/applicationContext.xml" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -60,6 +49,11 @@
         <option name="userSettingsFile" value="D:\Software\Programming\Environment\apache-maven-3.6.3\conf\settings.xml" />
       </MavenGeneralSettings>
     </option>
+    <option name="importingSettings">
+      <MavenImportingSettings>
+        <option name="importAutomatically" value="true" />
+      </MavenImportingSettings>
+    </option>
   </component>
   <component name="ProjectId" id="1aUEHTknfvFfhFyh9q03outkEY4" />
   <component name="PropertiesComponent">
@@ -74,8 +68,8 @@
       <recent name="D:\PersonalFiles\CodeLib\IoC-leeyaonan\src\main\resources" />
     </key>
     <key name="CreateClassDialog.RecentsKey">
-      <recent name="com.leeyaonan.aop.annotation" />
       <recent name="com.leeyaonan.utils" />
+      <recent name="com.leeyaonan.aop.annotation" />
     </key>
   </component>
   <component name="RunDashboard">
@@ -193,7 +187,7 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1586781684071</updated>
-      <workItem from="1586781687214" duration="9760000" />
+      <workItem from="1586781687214" duration="11190000" />
     </task>
     <servers />
   </component>
