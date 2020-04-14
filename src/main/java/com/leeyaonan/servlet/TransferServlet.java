@@ -1,6 +1,6 @@
 package com.leeyaonan.servlet;
 
-import com.leeyaonan.factory.BeanFactory;
+import com.leeyaonan.config.MyAnnotationConfigApplicationContext;
 import com.leeyaonan.factory.ProxyFactory;
 import com.leeyaonan.pojo.Result;
 import com.leeyaonan.service.TransferService;
@@ -27,10 +27,15 @@ public class TransferServlet extends HttpServlet {
 
 
     @Override
-    public void init() throws ServletException {
-        WebApplicationContext webApplicationContext = WebApplicationContextUtils.getWebApplicationContext(this.getServletContext());
-        ProxyFactory proxyFactory = (ProxyFactory) webApplicationContext.getBean("proxyFactory");
-        transferService = (TransferService) proxyFactory.getJdkProxy(webApplicationContext.getBean("transferService"));
+    public void init() {
+        MyAnnotationConfigApplicationContext applicationContext = new MyAnnotationConfigApplicationContext("com.leeyaonan");
+        ProxyFactory proxyFactory = null;
+        try {
+            proxyFactory = (ProxyFactory) applicationContext.getBean("proxyFactory");
+            transferService = (TransferService) proxyFactory.getJdkProxy(applicationContext.getBean("transferService"));
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 
     @Override

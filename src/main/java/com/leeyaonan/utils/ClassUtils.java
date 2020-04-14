@@ -13,6 +13,7 @@ import java.util.jar.JarEntry;
 import java.util.jar.JarFile;
 
 /**
+ * 工具类，获取某个包下的所有类信息
  * @Author leeyaonan
  * @Date 2020/4/14 0:44
  */
@@ -29,7 +30,7 @@ public class ClassUtils {
             // 获取当前的包名
             String packageName = c.getPackage().getName();
             // 获取当前包下以及子包下所以的类
-            List<Class<?>> allClass = scanPackages(packageName);
+            List<Class<?>> allClass = getClasses(packageName);
             if (allClass != null) {
                 returnClassList = new ArrayList<Class>();
                 for (Class classes : allClass) {
@@ -73,7 +74,7 @@ public class ClassUtils {
      * @param
      * @return
      */
-    public static List<Class<?>> scanPackages(String packageName) {
+    public static List<Class<?>> getClasses(String packageName) {
 
         // 第一个class类的集合
         List<Class<?>> classes = new ArrayList<>();

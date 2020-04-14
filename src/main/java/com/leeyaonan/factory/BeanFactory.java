@@ -29,6 +29,7 @@ public class BeanFactory {
 
     // 1. 读取和解析beans.xml文件，通过反射技术实例化对象并且存储在map集合中待用
     static {
+/*
         // 静态代码块读取解析xml
 
         // 1. 加载xml配置文件
@@ -89,6 +90,7 @@ public class BeanFactory {
         } catch (InvocationTargetException e) {
             e.printStackTrace();
         }
+*/
     }
 
     // 2. 对外提供获取实例对象的接口（根据id获取）

@@ -2,6 +2,8 @@ package com.leeyaonan.dao.impl;
 
 import com.alibaba.druid.pool.DruidDataSource;
 import com.alibaba.druid.pool.DruidPooledConnection;
+import com.leeyaonan.aop.annotation.MyAutowired;
+import com.leeyaonan.aop.annotation.MyService;
 import com.leeyaonan.dao.AccountDao;
 import com.leeyaonan.pojo.Account;
 import com.leeyaonan.utils.C3p0Utils;
@@ -17,8 +19,10 @@ import java.sql.SQLException;
  * @Author leeyaonan
  * @Date 2020/4/12 12:23
  */
+@MyService(name = "accountDao")
 public class JdbcAccountDaoImpl implements AccountDao {
 
+    @MyAutowired
     private ConnectionUtils connectionUtils;
 
     public void  setConnectionUtils(ConnectionUtils connectionUtils) {

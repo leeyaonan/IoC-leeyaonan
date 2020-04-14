@@ -1,9 +1,6 @@
 package com.leeyaonan.aop.annotation;
 
-import java.lang.annotation.ElementType;
-import java.lang.annotation.Retention;
-import java.lang.annotation.RetentionPolicy;
-import java.lang.annotation.Target;
+import java.lang.annotation.*;
 
 /**
  * 自定义注解@Service，向容器注入bean
@@ -14,8 +11,9 @@ import java.lang.annotation.Target;
  * @Author leeyaonan
  * @Date 2020/4/13 13:47
  */
+@Documented
 @Target({ElementType.TYPE})
 @Retention(RetentionPolicy.RUNTIME)
 public @interface MyService {
-
+    String name() default "";
 }

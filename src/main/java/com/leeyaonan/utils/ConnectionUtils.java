@@ -1,7 +1,11 @@
 package com.leeyaonan.utils;
 
 import com.alibaba.druid.pool.DruidPooledConnection;
+import com.leeyaonan.aop.annotation.MyAutowired;
+import com.leeyaonan.aop.annotation.MyService;
+import org.springframework.beans.factory.annotation.Autowired;
 
+import javax.sql.DataSource;
 import java.sql.Connection;
 import java.sql.SQLException;
 
@@ -9,17 +13,8 @@ import java.sql.SQLException;
  * @Author leeyaonan
  * @Date 2020/4/13 7:52
  */
+@MyService(name = "connectionUtils")
 public class ConnectionUtils {
-
-/*    private ConnectionUtils() {
-
-    }
-
-    private static ConnectionUtils connectionUtils = new ConnectionUtils();
-
-    public static ConnectionUtils getInstance() {
-        return connectionUtils;
-    }*/
 
     private ThreadLocal<Connection> threadLocal = new ThreadLocal<>();  // 存储当前线程的连接
 
