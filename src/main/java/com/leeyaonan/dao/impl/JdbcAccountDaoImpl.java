@@ -51,7 +51,8 @@ public class JdbcAccountDaoImpl implements AccountDao {
 
         resultSet.close();
         preparedStatement.close();
-        con.close();
+        // 这里不可以close
+//        con.close();
 
         return account;
     }
@@ -70,7 +71,7 @@ public class JdbcAccountDaoImpl implements AccountDao {
         preparedStatement.setString(2,account.getCardNo());
         int i = preparedStatement.executeUpdate();
         preparedStatement.close();
-        con.close();
+//        con.close();
         return i;
     }
 }
